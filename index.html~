@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Highway to hell With CS .. </title>
+
+		<meta name="description" content="LiveScript talk at Functional Programmers Paris Meetup, November 26th 2013">
+		<meta name="author" content="sabbath" >
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>" The form of eukaryotic membrane traffic "</h1> <br />
+					<h3>by <a href=""> Ankit </a>
+								 
+            Under
+           <a href=""> M.Srivas & M.Thattai</a>
+					</h3>	
+				</section>
+   
+
+<section>
+ <img src="imahes.jpg" alt="toota Toota ek Parinda .. " height="450" width="600">
+
+ <p>I know More About <font color="#ff0080">Sat-Smt</font> than the Prof's Do.
+ <br />
+ <a><b> BELIEVE ME !</b></a></p>
+</section>
+
+<section>
+<h3>Biology ??? Are You serious ??</h3>
+<img src="2.jpg" alt="">
+</section>
+				
+<section>
+			 										<img class="plain" src="1.jpg" height="320" width ="450"/>
+                                        
+										<div class="pic-label small">
+                                       Mukund Thattai <font color="green">@ncbs</font>
+										</div>
+										<img class="plain" src="rr.png" height="200" width ="200"/>
+										<img class="plain" src="3.jpg" height="200" width ="200"/>
+                                        
+										<div class="pic-label small">
+                                       Mandayam.S     .  Somya Mani
+
+										</div>	
+										
+</section>
+
+
+<section>
+            	<h2><a>Formal Goal :</a></h2>		
+				<ol>
+ <li>Provide tool support for biological systems.</li>
+ 
+ <br /> 
+ 
+ <li>Explain why SAT works for some problems and not for others.</li>				
+				</ol>
+				<br />
+				
+		<pre><code>
+	" Does some bilogical process works like SAT Solvers? "
+		 </code></pre>
+</section>
+
+<section>
+	<h4>The Nobel Prize in Physiology or Medicine 2013 Rothman, Schekman and Südhof
+	</h4>
+<img src="h.jpeg" height = "430" width="620">
+<p><font color="brown">Discoveries of <a>machinery regulating vesicle traffic.</a></font></p>
+</section>
+
+
+<section><h3>How is the right cargo delivered to the
+right place ?</h3>
+<img src="11.jpg"height = "320" width="230">
+<img src = "55.jpg" height = "320" width="330">
+<p>George
+E. Palade</p>
+</section>
+
+<section>
+<h2><a href="">Molecular interactions</a></h2> 
+<code>
+<ul><li><q cite="">Arf and Rab GTPases : Inhibition(Encodes Compartment Identity).</q></li>
+<li><q cite="">Coat proteins : Molecular loading.</q></li>
+<li><q cite=""><font color="#ff008">SNARE proteins : Reguates FUSION of vesicle.</font></q></li>
+</ul>
+</code>
+<br />
+
+<p><br /><q cite="">Regulate the movement of transport vesicles between the membrane-bound compartments of
+eukaryotic cells. </q></p>
+</section>
+
+				<section>
+					<h2>Vesicular traffic Model</font></h2>
+					<ul>
+						<li><q cite="">Nodes (N) represent compartments exchanging <font color="#bf4040">molecules</font><font color="#ff0080"> M</font>
+						 <font color="#bf4040"></font> Represent a node as a<font color="green"> bitvector </font><font color="#ff008">0b1101</font> 
+
+</q></li>
+
+						<li>Directed Edge represent vesicles that are going out to  <a href="https://npmjs.org/">fuse to another compartment.</a></li>
+						<li>Two Required Condition:<sup>*</sup></li>
+
+
+					</ul>
+<pre><code data-trim contenteditable>						
+
+1. Cell has to be in steady State         
+
+2. Edges should respect fusion rules.				
+
+</code></pre>
+					<small style="margin-top:50px;"><sup>*</sup> :Not always  <a href="http://lodash.com/">the case</a> but interesting enough.</small>
+				</section>
+
+				<section>
+					<h2>Fusion Rules ...</h2>
+					<ul>
+               <li> In order to fusion to occur V-Snares present at edge 
+                should find the corresponding T-Snares at the target node.</li> 
+                <br />
+<li>        Driven by <a href ="">Friend/Inhibition- Matrix </a><font color="#808000">&nbsp; v * t matrix </font>
+ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+ <code>              Represnts which t snares are required in order to fusion to happen.</code></li>
+                                <br />
+
+<li>
+                 At least one tsnares required for the fusion should be in active based on <font color="#008900">OnOff Matrix</font> <font color="red">   &nbsp;v * t matrix</font> &nbsp; :
+                 &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<code>States which t snares are in active phase at any node.</code>
+    </li>        <br />      
+      
+     </ul>
+				</section>
+
+<section>
+<ul>
+ <li>        <font color="#bf4040"> At least one vsnare should pass all constraints</font> and allow fusion to occur. Multiple can.</li>
+<br /><li>
+            <code>Other constraine is that the tsnares that are required for fusion have not to be present at edge.</code>
+                Else that vsnare will not be considered for a candidate for the fusion. 
+          </li>      
+    <br />       <li><font color="green">Self edges / loops </font>not allowed.</li></ul>
+</section>
+
+<section>
+	<h3>Steady State :</h3>
+<pre><code>
+for_all nodes
+   for_All molecules m present on edges edgel s.t edgel.source == n
+   there exist
+      an edge: edge#m(edgel.target,n)
+   OR
+      a seq (1..k) :
+        edge#m(edgel.target, seq(1)) &&
+        edge#m(seq(1), seq(2)) && ... && edge#m(seq(k),n)
+
+edge(x,y): There is an edge between node x and node y
+edge#m(x,y): There is an edge between  node x and y, and molecule m is
+present on that edge.
+
+Each sequence stores a node. seq(1) for eg. equals three represent the third node.
+
+</code></pre>
+</section>
+<section>
+<h4>Fusion Rules</h4>
+<pre><code>for_all edges e
+   # Flush the store
+   store = 0b0;
+   for_all active molecules m on edge e
+   # Store The corresponding molecule in
+    store
+        store = store |
+        Consult_Interaction-Matrix(m);  
+   Atleast one of the corresponding molecule present 
+   on the target node should be active*
+
+# Makes sure that vesicle goes to the target
+and not to any other node.
+
+for_all node n != e.target
+    for_all m’ in store
+         m’ is absent or non-active at n
+</code></pre>
+
+
+</section>
+
+
+
+<section>
+<h2>Tool used <font color="maroon">CBMC</font></h2>
+<h3>C bounded Model Checker</h3>
+<img src="1.png"> 
+</section>
+
+
+<section>
+<h2>Results ...</h2>
+
+<img src="24.png">
+</section>	
+
+<!--
+$\begin{table*}[]
+\centering
+\caption{ Degrees of regulation of SNARE activity } 
+\label{my-label}
+\begin{tabular}{@{}lll@{}}
+\newline 
+Sr.No & Vesicle Traffic Model.                                             & Connected-ness               \\ \\ \hline
+\\ 1.    & Arbitrary Boolean model.                                           & N = 2C S = 3C                \\ \\
+2.    & Only Fusion Matrix Model.                                          & No Graphs                    \\ \\
+3.    & Arbitrary boolean on node                                          & No Graphs                    \\  \\
+4.    & System with arbitrary boolean on edge                              & N \& S = 3 C                 \\ \\
+5.    & System with SNARE inhibition only on edge                         &  Higher Connected-ness than 4 \\ \\
+6.    & System with arbitrary boolean on node \\ & and SNARE inhibition on edge & N \& S = 4 C   \\   \\  \hline         
+\end{tabular}
+\end{table*}$
+</section>	-->
+<section>
+
+<h3>Scaling and Challenges.
+    <br /> N > 8</h3>
+
+<img src="2.gif" alt="">
+</section>
+
+	<section>
+	<h2><a href="">Sat Solver Ran Out of Memory !</a></h2>
+<!--	|Bit-vector| =   M , <font color="#ff008">2 ^ M</font> possible combinations. -->
+	<pre><code>...
+	Post-processing
+Solving with MiniSAT 2.2.1 with simplifier
+25728906 variables, 102984038 clauses
+...</code></pre>
+	<ul>
+		(i) Decrease formula size and number of clauses.<br />
+		
+	(ii) Avoid Variable coupling.
+	</ul>
+	</section>
+				
+<section>
+	
+	
+<h2>Results ...</h2>
+<table class="tg" style="width: 800px; height: 275px; margin-left: auto; margin-right: auto;" cellspacing="10" cellpadding="10"><caption>&nbsp;</caption>
+<tbody>
+<tr>
+<th class="tg-031e" style="width: 48px;">Sr.No</th>
+<th class="tg-yw4l" style="width: 470px;">Vesicle Traffic Model.</th>
+<th class="tg-yw4l" style="width: 169px;">Graph Connectedness</th>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">1.</td>
+<td class="tg-yw4l" style="width: 470px;">Arbitrary Boolean model.</td>
+<td class="tg-yw4l" style="width: 169px;">N = 2C S = 3C</td>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">2.</td>
+<td class="tg-yw4l" style="width: 470px;">Only Fusion Matrix Model.</td>
+<td class="tg-yw4l" style="width: 169px;">No Graphs</td>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">3.</td>
+<td class="tg-yw4l" style="width: 470px;">Arbitrary Boolean on node</td>
+<td class="tg-yw4l" style="width: 169px;">No Graphs</td>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">4.</td>
+<td class="tg-yw4l" style="width: 470px;">System with arbitrary Boolean on edge</td>
+<td class="tg-yw4l" style="width: 169px;">N &amp; S = 3C</td>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">5.</td>
+<td class="tg-yw4l" style="width: 470px;">System with SNARE inhibition only on edge</td>
+<td class="tg-yw4l" style="width: 169px;">Higher Connectedness than 4</td>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">6.</td>
+<td class="tg-yw4l" style="width: 470px;">
+<p>System with arbitrary Boolean on node and</p>
+<p>SNARE inhibition on edge</p>
+</td>
+<td class="tg-yw4l" style="width: 169px;">N &amp; S = 4C</td>
+</tr>
+<tr>
+<td class="tg-yw4l" style="width: 48px;">7.</td>
+<td class="tg-yw4l" style="width: 470px;">No. 6 with constraint that Every edge is Unique</td>
+<td class="tg-yw4l" style="width: 169px;">N &amp; S = 3C</td>
+</tr>
+</tbody>
+</table><style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-031e">Sr.No </th>
+    <th class="tg-yw4l">Vesicle Traffic Model.</th>
+    <th class="tg-yw4l">Graph Connectedness</th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">1.  </td>
+    <td class="tg-yw4l">Arbitrary Boolean model.</td>
+    <td class="tg-yw4l">N = 2C S = 3C</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">2. </td>
+    <td class="tg-yw4l">Only Fusion Matrix Model.</td>
+    <td class="tg-yw4l">No Graphs</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">3. </td>
+    <td class="tg-yw4l">Arbitrary Boolean on node</td>
+    <td class="tg-yw4l">No Graphs</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">4. </td>
+    <td class="tg-yw4l">System with arbitrary Boolean on edge</td>
+    <td class="tg-yw4l">N &amp; S = 3C</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">5. </td>
+    <td class="tg-yw4l">System with SNARE inhibition only on edge</td>
+    <td class="tg-yw4l">Higher Connectedness than 4</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">6. </td>
+    <td class="tg-yw4l">System with arbitrary Boolean on node and SNARE inhibition on edge</td>
+    <td class="tg-yw4l">N &amp; S = 4C</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">7.</td>
+    <td class="tg-yw4l">No. 6 with constraint that  Every edge is Unique</td>
+    <td class="tg-yw4l">N &amp; S = 3C</td>
+  </tr>
+</table>
+
+
+</section>
+
+
+
+   	
+
+   
+   
+	
+
+
+
+
+	<section>
+	<h2>Thank You !</h2>
+<img src="1.gif" alt="" height="480" width="650">
+				
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+		
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

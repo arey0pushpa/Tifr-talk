@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Highway to hell With CS .. </title>
+
+		<meta name="description" content="LiveScript talk at Functional Programmers Paris Meetup, November 26th 2013">
+		<meta name="author" content="sabbath" >
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>" The form of eukaryotic membrane traffic "</h1> <br />
+					<h3>by <a href=""> Ankit </a>
+								 
+            Under
+           <a href=""> M.Srivas & M.Thattai</a>
+					</h3>	
+				</section>
+   
+
+<section>
+ <img src="imahes.jpg" alt="toota Toota ek Parinda .. " height="450" width="600">
+
+ <p>I know More About <font color="#ff0080">Sat-Smt</font> than the Prof's Do.
+ <br />
+ <a><b> BELIEVE ME !</b></a></p>
+</section>
+
+<section>
+<h3>Biology ??? Are You serious ??</h3>
+<img src="2.jpg" alt="">
+</section>
+				
+<section>
+			 										<img class="plain" src="1.jpg" height="320" width ="450"/>
+                                        
+										<div class="pic-label small">
+                                       Mukund Thattai <font color="green">@ncbs</font>
+										</div>
+										<img class="plain" src="rr.png" height="200" width ="200"/>
+										<img class="plain" src="3.jpg" height="200" width ="200"/>
+                                        
+										<div class="pic-label small">
+                                       Mandayam.S     .  Somya Mani
+
+										</div>	
+										
+</section>
+
+
+<section>
+            	<h2><a>Overall Goal :</a></h2>		
+				<ol>
+ <li>Provide tool support for biological systems.</li>
+ 
+ <br /> 
+ 
+ <li>Explain why SAT works for some problems and not for others.</li>				
+				</ol>
+				<br />
+				
+		<pre><code>
+	" Does some bilogical process works like SAT Solvers? "
+		 </code></pre>
+</section>
+
+<section><h3>How is the right cargo delivered to the
+right place ?</h3>
+<img src="11.jpg"height = "320" width="230">
+<img src = "55.jpg" height = "320" width="330">
+<p>George
+E. Palade</p>
+</section>
+
+<section>
+	<h4>The Nobel Prize in Physiology or Medicine 2013 Rothman, Schekman and Südhof
+	</h4>
+<img src="h.jpeg" height = "430" width="620">
+<p><font color="brown">Discoveries of <a>machinery regulating vesicle traffic.</a></font></p>
+</section>
+
+
+<section>
+<h2><a href="">Molecular interactions</a></h2> 
+<code>
+<ul><li><q cite="">Arf and Rab GTPases : Inhibition(Encodes Compartment Identity).</q></li>
+<li><q cite="">Coat proteins : Molecular loading.</q></li>
+<li><q cite=""><font color="#ff008">SNARE proteins : Reguates FUSION of vesicle.</font></q></li>
+</ul>
+</code>
+<br />
+<p><br /><q cite="">Regulate the movement of transport vesicles between the membrane-bound compartments of
+eukaryotic cells. </q></p>
+</section>
+
+<section>
+	<h3>What we were trying to do ?</h3>
+Connect Rules to graph connectivity.
+
+<br />
+N ~ <font color="#004d00">Minimum Graph connnectivity</font> required  
+    by the rules.
+
+<br /> <br />
+S ~ <font color="#8c1aff">Every Graph</font> with that connectivity will
+    have a satisfying assignment.
+</section>
+
+
+
+
+				<section>
+					<h2>Vesicular traffic Model</font></h2>
+					<ul>
+						<li><q cite="">Nodes (N) represent compartments exchanging <font color="#bf4040">molecules</font><font color="#ff0080"> M</font>
+						 <font color="#bf4040"></font> Represent a node as a<font color="green"> bitvector </font><font color="#ff008">0b1101</font> 
+
+</q></li>
+
+						<li>Directed Edge represent vesicles that are going out to  <a href="https://npmjs.org/">fuse to another compartment.</a></li>
+						<li>Two Required Condition:<sup>*</sup></li>
+
+
+					</ul>
+<pre><code data-trim contenteditable>						
+
+1. Cell has to be in steady State         
+
+2. Edges should respect fusion rules.				
+
+</code></pre>
+<li><font color="green">Self edges </font>not allowed.</li></ul>
+<li>Allowed Multiple edges.</li>
+					<small style="margin-top:50px;"><sup>*</sup> :Not always  <a href="http://lodash.com/">the case</a> but interesting enough.</small>
+				</section>
+
+
+
+<section>
+	<h3>> <font color="#bf4040">Steady State :</font></h3>
+<pre><code>
+for_all nodes
+   for_All molecules m present on edges edgel s.t edgel.source == n
+   there exist
+      an edge: edge#m(edgel.target,n)
+   OR
+      a seq (1..k) :
+        edge#m(edgel.target, seq(1)) &&
+        edge#m(seq(1), seq(2)) && ... && edge#m(seq(k),n)
+
+edge(x,y): There is an edge between node x and node y
+edge#m(x,y): There is an edge between  node x and y, and molecule m is
+present on that edge.
+
+Each sequence stores a node.
+
+</code></pre>
+</section>
+<section>
+<h2>Fusion Rules :</h2>
+<pre><code>for_all edges e
+   # Flush the store
+   store = 0b0;
+   for_all active molecules m on edge e
+   # Store The corresponding molecule in
+    store
+        store = store |
+        Consult_Interaction-Matrix(m);  
+   Atleast one of the corresponding molecule present 
+   on the target node should be active*
+
+# Makes sure that vesicle goes to the target
+and not to any other node.
+
+for_all node n != e.target
+    for_all m’ in store
+         m’ is absent or non-active at n
+
+</code></pre>
+</section>
+
+<section>
+					<h3><a>Fusion Rules: Two mechanism </a></h3>
+					<img src="33.png" height="450" width="400" > <img src= "34.png"  height="450" width="400">
+				<p>System with no inhibition on nodes.</p>
+				</section>
+
+
+<section>
+	<h2>Tool used <font color="maroon">CBMC</font></h2>
+<img src="4.gif" height="420" width="600">
+<p><a> <font size="16">Such a nasty tool.</font></a></p>
+</section>
+
+<section>
+		<h2>Tool used <font color="maroon">CBMC</font></h2>
+<img src="1.png" height="440" width="640"> 
+</section>
+
+<section>
+	<h3>Necessary condition :</h3>
+<pre><code>
+# C1 : Steady state condition.
+# C2,C3 : Fusion rules.
+# C4 : Graph is four connected.
+# G : Graph, f : Boolean Function
+
+# There exists a 4 connected graph for eRSS model
+SAT ( C1 && C2(f) && C3(f) && C4(G))
+
+</code></pre>
+
+<pre><code>
+# C1 : Steady state condition.
+# C2,C3 : Fusion rules.
+# C34’ : Graph is 3-connected but not four connected.
+# G : Graph, f : Boolean Function
+
+# There exists a 3-connected graph that satisfies eRSS rules
+SAT (C1 && C2(f) && C3(f) && C34’(G))
+
+</code></pre>
+</section>
+
+<section>
+<h3>Sufficient Condition :</h3>
+<pre><code>
+
+# C1 : Steady state condition.
+# C2,C3 : Fusion rules.
+# C4 : Graph is 4-connected.
+# G : Graph, f : Boolean Function
+
+Valid (for_all G : ((C4(G)) -> there-exists f : (!(C1 && C2(f) && C3(f)))))
+
+</code></pre>
+
+</section>
+
+<section>
+<h2><a>Results ...</a></h2>
+
+<img src="45.png">
+</section>	
+
+<section>
+
+<h3>Scaling and Challenges.
+    <br /> N > 8</h3>
+
+<img src="2.gif" alt="" height="400" width="600">
+<p><font color="#006699">Then deal me in ..</font> </p>
+</section>
+
+	<section>
+	<h2><a href="">Sat Solver Apocalypse  !</a></h2>
+<!--	|Bit-vector| =   M , <font color="#ff008">2 ^ M</font> possible combinations. -->
+	<pre><code>...
+	Post-processing
+Solving with MiniSAT 2.2.1 with simplifier
+25728906 variables, 102984038 clauses
+...</code></pre>
+	<ul>
+		(i) Decrease formula size and number of clauses.<br />
+		
+	(ii) Avoid Variable coupling.
+	</ul>
+	</section>
+<section>
+<h3>Srivas Suggestions...</h3>
+
+<ol>
+
+<li><a>Scale and Size :</a>
+<br />
+<q>Use of more advanced methods, such
+as word-level SMT solvers and semi-automatic inductive techniques for
+analyzing systems of arbitrary sizes.</q></li>
+<br />
+<li><a>Quantifier Alternation :</a>
+<br />
+Impact using advanced techniques for quantifier elimination in SAT solvers 
+and model-checkers for applications such as ours.
+</li>
+</ol>
+</section>
+
+	<section>
+	<h2>Thank You !</h2>
+<img src="1.gif" alt="" height="480" width="650">
+				
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+		
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
